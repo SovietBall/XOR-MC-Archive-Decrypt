@@ -432,7 +432,7 @@ function integrityTest(targetPath) {
     ls = fs.readdirSync(pl.join(targetPath, 'db'));
     var flag = 0b11;
     for (var file of ls) {
-      if (/^MANIFEST-[0-9]{6}$/.test(file)) flag &= 0b10;
+      if (/^MANIFEST-[0-9]{7}$/.test(file)) flag &= 0b10;
       if (/^CURRENT$/.test(file)) flag &= 0b01;
       if (!flag) break;
     }
@@ -475,7 +475,7 @@ async function preprocessDir(path, mode) {
 
   for (var file of ls) {
     // Files except these wont be proccessed
-    if (!/^MANIFEST-[0-9]{6}$/.test(file) && !/^CURRENT$/.test(file) && !/^[0-9]{6}.ldb$/.test(file)) continue;
+    if (!/^MANIFEST-[0-9]{7}$/.test(file) && !/^CURRENT$/.test(file) && !/^[0-9]{6}.ldb$/.test(file)) continue;
     var filePath = pl.join(lPath, file);
     if (fs.statSync(filePath).isFile()) {
       var tempBuf = fs.readFileSync(filePath);
